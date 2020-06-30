@@ -1,11 +1,23 @@
+#include "Application.hpp"
+#include "Core.hpp"
+
 #include <iostream>
 
-namespace Engine {
+namespace FGE {
 
-    void Print() {
+    Application::Application() {}
+    Application::~Application() {}
 
-        std::cout << "Print From Engine \n";
+    void Application::Run() {
+
+        while( true ) {
+            
+
+
+        }
+        
 
     }
+
 
 }

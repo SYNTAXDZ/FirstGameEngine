@@ -1,6 +1,8 @@
 project( "Engine" )
 
-add_library( ${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/FGE/Core/Application.cpp)
+file( GLOB_RECURSE ENGINE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+
+add_library( ${PROJECT_NAME} "${ENGINE_SRC}")
 
 find_package( GLEW CONFIG REQUIRED )
 find_package( glfw3 CONFIG REQUIRED )
