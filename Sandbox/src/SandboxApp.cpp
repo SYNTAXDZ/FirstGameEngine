@@ -1,10 +1,17 @@
 #include <Engine.hpp>
 
-int main() {
+class Sandbox : public FGE::Application {
 
-    Engine::Print();
+public:
+    Sandbox() {}
+    ~Sandbox() {}
+
+};
+
+FGE::Application* FGE::CreateApplication() {
+
+    return new Sandbox();
 
 }
-
 
 
