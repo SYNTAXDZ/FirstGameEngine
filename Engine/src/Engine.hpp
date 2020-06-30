@@ -1,0 +1,1 @@
+#include "FGE/Core/Application.hpp"
