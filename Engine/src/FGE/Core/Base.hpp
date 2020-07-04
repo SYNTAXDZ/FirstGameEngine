@@ -8,3 +8,4 @@
 */
 
 #define FGE_TEST() ( std::cout << "Some Testing.." )
+#define BIT( x ) ( x << 1 )

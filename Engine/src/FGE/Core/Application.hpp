@@ -1,5 +1,9 @@
 #pragma once
 
+#include "../Events/ApplicationEvent.hpp"
+#include "../Events/MouseEvent.hpp"
+#include "../Events/KeyEvent.hpp"
+
 namespace FGE {
     class Application {
 

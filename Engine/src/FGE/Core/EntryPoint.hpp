@@ -8,7 +8,7 @@ int main( int argc, char** argv ) {
     FGE_CORE_INFO( "Engine Started !!" );
 
     auto app = FGE::CreateApplication();
-    FGE_INFO( "Ready !!" );
+    FGE_TRACE( "Ready !!" );
     app->Run();
 
     delete app;

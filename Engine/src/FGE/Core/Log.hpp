@@ -25,6 +25,8 @@ namespace FGE {
 
 // Core log macros
 #define FGE_CORE_TRACE(...)    ::FGE::Log::GetCoreLogger()->trace(__VA_ARGS__)
+// what is in (...) which is variable number argument will be replaced 
+// by __VA_ARGS__
 #define FGE_CORE_INFO(...)     ::FGE::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define FGE_CORE_WARN(...)     ::FGE::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define FGE_CORE_ERROR(...)    ::FGE::Log::GetCoreLogger()->error(__VA_ARGS__)
