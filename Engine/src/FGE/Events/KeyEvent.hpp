@@ -12,6 +12,8 @@ namespace FGE {
 		EVENT_CLASS_CATEGORY( EventCategoryKeyboard | EventCategoryInput )
 	
     protected:
+    	// protected Constructor mean it will be used only by the derived class,
+    	// and he will not be able to be called publicly
 		KeyEvent( int keycode ) : m_KeyCode( keycode ) {}
 
 		int m_KeyCode;

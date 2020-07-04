@@ -30,12 +30,14 @@ namespace FGE {
 
     };
 
-    #define EVENT_CLASS_TYPE( type ) static EventType GetStaticType() { return EventType::type; }\
+// this macro i just a helper to impliment GetEventType() and Getname() in derived classes of Event class
+#define EVENT_CLASS_TYPE( type ) static EventType GetStaticType() { return EventType::type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
 
 
-    #define EVENT_CLASS_CATEGORY( category ) virtual int GetCategoryFlags() const override { return category; }
+// This Macro Help us to Impliment GetCategoryFlags() on derived classes of Event class
+#define EVENT_CLASS_CATEGORY( category ) virtual int GetCategoryFlags() const override { return category; }
 
     class Event {
 
