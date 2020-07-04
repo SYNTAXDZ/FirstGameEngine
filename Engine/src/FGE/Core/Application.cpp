@@ -1,8 +1,6 @@
 #include "Application.hpp"
 #include "Base.hpp"
 
-#include <iostream>
-
 namespace FGE {
 
     Application::Application() {}

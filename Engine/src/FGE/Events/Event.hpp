@@ -2,12 +2,6 @@
 
 #include "../Core/Base.hpp"
 
-#include <string>
-#include <iostream>
-#include <functional>
-#include <sstream>
-#include <utility>
-
 namespace FGE {
 
     enum class EventType {
