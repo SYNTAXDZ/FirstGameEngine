@@ -18,6 +18,7 @@ target_link_libraries( ${PROJECT_NAME} GLEW::GLEW glfw glm spdlog::spdlog assimp
 set_target_properties(${PROJECT_NAME} PROPERTIES UNITY_BUILD ON)
 target_compile_features( ${PROJECT_NAME} PRIVATE cxx_std_17)
 
+# the pch will be included automaticlly in all cpp files in this target
 target_precompile_headers( ${PROJECT_NAME}
-  PUBLIC 
-  [["precompiled.h"]])
+                           PUBLIC  
+                           [["precompiled.h"]])
