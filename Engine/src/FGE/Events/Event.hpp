@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/Base.hpp"
+#include "FGE/Core/Base.hpp"
 
 namespace FGE {
 

@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../Events/ApplicationEvent.hpp"
-#include "../Events/MouseEvent.hpp"
-#include "../Events/KeyEvent.hpp"
+#include "Window.hpp"
+
+#include "FGE/Events/Event.hpp"
+
 
 namespace FGE {
     class Application {
@@ -14,6 +15,10 @@ namespace FGE {
         virtual ~Application();
 
         void Run();
+    
+    private:
+        std::unique_ptr<Window> m_Window;
+        bool m_Running = true;
 
     };
 
