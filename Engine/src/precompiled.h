@@ -1,0 +1,21 @@
+#pragma once
+
+#include <string>
+#include <sstream>
+#include <cmath>
+#include <csignal>
+#include <cstdlib>
+#include <functional>
+#include <exception>
+#include <stdexcept>
+#include <iterator>
+#include <limits>
+#include <numeric>
+#include <utility>
+#include <memory>
+#include <tuple>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <optional>
+#include <variant>
