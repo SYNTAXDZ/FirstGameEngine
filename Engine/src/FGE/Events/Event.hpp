@@ -61,7 +61,8 @@ namespace FGE {
 
 		template<typename T>
 		bool Dispatch( EventFn<T> func ) {
-
+            // If The Type Of The Event who has been set to The Dispatcher, is Equivalent To 
+            // The Event Type In The Template, So Handle The Event
 			if( m_Event.GetEventType() == T::GetStaticType() ) {
 
 				m_Event.Handled = func( *( T* )&m_Event );
