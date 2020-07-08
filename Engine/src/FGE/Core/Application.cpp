@@ -2,18 +2,26 @@
 #include "Base.hpp"
 #include "Log.hpp"
 
-#include "FGE/Events/ApplicationEvent.hpp"
-#include "FGE/Events/MouseEvent.hpp"
-#include "FGE/Events/KeyEvent.hpp"
+#define BIND_EVENT_FN( x ) std::bind( &Application::x, this, std::placeholders::_1 )
 
 namespace FGE {
 
     Application::Application() {
 
         m_Window =  std::unique_ptr<Window>( Window::Create() );
+        m_Window->SetEventCallback( BIND_EVENT_FN( OnEvent ) );
 
     }
     Application::~Application() {}
+
+    void Application::OnEvent( Event& e ) {
+
+        EventDispatcher dispatcher( e );
+        dispatcher.Dispatch<WindowCloseEvent>( BIND_EVENT_FN( OnWindowClose ) );
+
+        FGE_CORE_TRACE( "{0}", e );
+
+    }
 
     void Application::Run() {
 
@@ -23,6 +31,14 @@ namespace FGE {
 
         }
         
+
+    }
+
+    bool Application::OnWindowClose( WindowCloseEvent& e ) {
+
+        m_Running = false;
+
+        return true;
 
     }
 
