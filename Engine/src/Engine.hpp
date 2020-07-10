@@ -3,6 +3,8 @@
 #include "FGE/Core/Base.hpp"
 #include "FGE/Core/Log.hpp"
 #include "FGE/Core/Application.hpp"
+#include "FGE/Core/Layer.hpp"
+#include "FGE/Core/LayerStack.hpp"
 #include "FGE/Core/EntryPoint.hpp"
 
 #include "FGE/Events/Event.hpp"
