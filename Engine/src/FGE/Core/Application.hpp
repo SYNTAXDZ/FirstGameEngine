@@ -6,6 +6,7 @@
 #include "FGE/Events/Event.hpp"
 #include "FGE/Events/ApplicationEvent.hpp"
 
+#include "FGE/ImGui/ImGuiLayer.hpp"
 
 namespace FGE {
     class Application {
@@ -33,6 +34,7 @@ namespace FGE {
     private:
         std::unique_ptr<Window> m_Window;
         LayerStack m_LayerStack;
+        ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
 
         static Application* s_Instance;

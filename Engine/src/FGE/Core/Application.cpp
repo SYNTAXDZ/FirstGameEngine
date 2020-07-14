@@ -18,7 +18,11 @@ namespace FGE {
         // Set The EventCallback To Handle The Events
         m_Window->SetEventCallback( BIND_EVENT_FN( OnEvent ) );
 
+        m_ImGuiLayer = new ImGuiLayer();
+        PushOverlay( m_ImGuiLayer );
+
     }
+    
     Application::~Application() {}
 
     void Application::OnEvent( Event& e ) {
@@ -61,6 +65,11 @@ namespace FGE {
             // the foreach array like this
             for( Layer* layer : m_LayerStack )
                 layer->OnUpdate();
+
+            m_ImGuiLayer->Begin();
+            for( Layer* layer : m_LayerStack )
+                layer->OnImGuiRender();
+            m_ImGuiLayer->End();
 
             m_Window->OnUpdate();
 
