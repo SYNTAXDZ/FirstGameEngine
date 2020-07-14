@@ -6,7 +6,12 @@
 
 namespace FGE {
 
+    Application* Application::s_Instance = nullptr;
+
     Application::Application() {
+
+        FGE_CORE_ASSERT( !s_Instance, "Application already exists!" );
+		s_Instance = this;
 
         // Create The Window
         m_Window =  std::unique_ptr<Window>( Window::Create() );
@@ -51,7 +56,9 @@ namespace FGE {
     void Application::Run() {
 
         while( m_Running ) {
-
+            
+            // Because We Added Implimentation for begin() and end() we can use
+            // the foreach array like this
             for( Layer* layer : m_LayerStack )
                 layer->OnUpdate();
 

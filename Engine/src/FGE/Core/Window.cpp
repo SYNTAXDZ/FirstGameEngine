@@ -49,13 +49,18 @@ namespace FGE {
         glfwMakeContextCurrent( m_Window );
         // Init GLEW
         glewExperimental = GL_TRUE;
-        if( glewInit() != GLEW_OK ) {
+        
+        /*if( glewInit() != GLEW_OK ) {
 
             std::cout << "Unable To Init GLEW";
 
             glfwTerminate();
 
-        }
+        }*/
+
+        GLenum status = glewInit();
+        FGE_CORE_ASSERT( status, "Failed To Load GLEW !!" );
+
         glfwSetWindowUserPointer( m_Window, &m_Data );
 		SetVSync( true );
 

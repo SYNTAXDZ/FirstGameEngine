@@ -25,6 +25,8 @@ namespace FGE {
 
         Window& GetWindow() { return *m_Window; }
 
+        inline static Application& Get() { return *s_Instance; }
+
     private:
         bool OnWindowClose( WindowCloseEvent& e );
 
@@ -32,6 +34,8 @@ namespace FGE {
         std::unique_ptr<Window> m_Window;
         LayerStack m_LayerStack;
         bool m_Running = true;
+
+        static Application* s_Instance;
 
     };
 

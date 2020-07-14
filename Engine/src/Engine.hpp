@@ -11,3 +11,5 @@
 #include "FGE/Events/ApplicationEvent.hpp"
 #include "FGE/Events/MouseEvent.hpp"
 #include "FGE/Events/KeyEvent.hpp"
+
+#include "FGE/ImGui/ImGuiLayer.hpp"
