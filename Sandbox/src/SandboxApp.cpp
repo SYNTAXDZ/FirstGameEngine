@@ -25,7 +25,6 @@ public:
     Sandbox() {
         // Push The Layer To The Stack of Layers
         PushLayer( new ExampleLayer() );
-        PushOverlay( new FGE::ImGuiLayer() );
 
     }
     ~Sandbox() {}
