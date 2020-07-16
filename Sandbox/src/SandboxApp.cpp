@@ -7,13 +7,16 @@ class ExampleLayer : public FGE::Layer {
 
         virtual void OnUpdate() override {
 
-            FGE_INFO( "ExampleLayer::OnUpdate" );
+            if( FGE::Input::IsKeyPressed( FGE_KEY_SPACE ) )
+                FGE_INFO( "Key Pressed" );
+
+            //FGE_INFO( "ExampleLayer::OnUpdate" );
 
         }
 
         virtual void OnEvent( FGE::Event& event ) override {
 
-            FGE_TRACE( "{0}", event );
+            //FGE_TRACE( "{0}", event );
 
         }
 

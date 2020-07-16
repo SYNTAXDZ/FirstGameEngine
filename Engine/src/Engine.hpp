@@ -7,6 +7,10 @@
 #include "FGE/Core/LayerStack.hpp"
 #include "FGE/Core/EntryPoint.hpp"
 
+#include "FGE/Core/KeyCodes.hpp"
+#include "FGE/Core/MouseCodes.hpp"
+#include "FGE/Core/Input.hpp"
+
 #include "FGE/Events/Event.hpp"
 #include "FGE/Events/ApplicationEvent.hpp"
 #include "FGE/Events/MouseEvent.hpp"
