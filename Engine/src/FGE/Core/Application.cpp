@@ -1,6 +1,9 @@
 #include "Application.hpp"
 #include "Base.hpp"
 #include "Log.hpp"
+#include "Input.hpp"
+
+#include <GL/glew.h>
 
 #define BIND_EVENT_FN( x ) std::bind( &Application::x, this, std::placeholders::_1 )
 
@@ -60,7 +63,10 @@ namespace FGE {
     void Application::Run() {
 
         while( m_Running ) {
-            
+
+            glClear( GL_COLOR_BUFFER_BIT );
+            glClearColor( 0.6f, 0.5f, 0.5f, 1.0f );
+
             // Because We Added Implimentation for begin() and end() we can use
             // the foreach array like this
             for( Layer* layer : m_LayerStack )
@@ -72,6 +78,9 @@ namespace FGE {
             m_ImGuiLayer->End();
 
             m_Window->OnUpdate();
+
+            if( Input::IsKeyPressed( FGE_KEY_ESCAPE ) )
+                m_Running = false;
 
         }
         

@@ -1,29 +1,30 @@
 #pragma once 
 
 #include "Event.hpp"
+#include "FGE/Core/Input.hpp"
 
 namespace FGE {
 
     class KeyEvent : public Event {
 
 	public:
-		inline int GetKeyCode() const { return m_KeyCode; }
+		inline KeyCode GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY( EventCategoryKeyboard | EventCategoryInput )
 	
     protected:
     	// protected Constructor mean it will be used only by the derived class,
     	// and he will not be able to be called publicly
-		KeyEvent( int keycode ) : m_KeyCode( keycode ) {}
+		KeyEvent( KeyCode keycode ) : m_KeyCode( keycode ) {}
 
-		int m_KeyCode;
+		KeyCode m_KeyCode;
 	
     };
 
 	class KeyPressedEvent : public KeyEvent {
 
 	public:
-		KeyPressedEvent( int keycode, int repeatCount ) : KeyEvent( keycode ), m_RepeatCount( repeatCount ) {}
+		KeyPressedEvent( KeyCode keycode, int repeatCount ) : KeyEvent( keycode ), m_RepeatCount( repeatCount ) {}
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
 
@@ -46,7 +47,7 @@ namespace FGE {
 	class KeyReleasedEvent : public KeyEvent {
 
 	public:
-		KeyReleasedEvent( int keycode ) : KeyEvent( keycode ) {}
+		KeyReleasedEvent( KeyCode keycode ) : KeyEvent( keycode ) {}
 
 		std::string ToString() const override {
 
@@ -64,7 +65,7 @@ namespace FGE {
 	class KeyTypedEvent : public KeyEvent {
 
 	public:
-		KeyTypedEvent( int keycode ) : KeyEvent( keycode ) {}
+		KeyTypedEvent( KeyCode keycode ) : KeyEvent( keycode ) {}
 
 		std::string ToString() const override {
 
