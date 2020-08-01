@@ -2,10 +2,13 @@
 #include "Log.hpp"
 #include "Input.hpp"
 
+#include <GLFW/glfw3.h>
+
 #include "FGE/Events/ApplicationEvent.hpp"
 #include "FGE/Events/MouseEvent.hpp"
 #include "FGE/Events/KeyEvent.hpp"
 
+//#include "Platform/OpenGL/GLGraphicsContext.hpp"
 
 namespace FGE {
 
@@ -48,20 +51,8 @@ namespace FGE {
         m_Window = glfwCreateWindow( (int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr );
 		++s_GLFWWindowCount;
 
-        glfwMakeContextCurrent( m_Window );
-        // Init GLEW
-        glewExperimental = GL_TRUE;
-        
-        /*if( glewInit() != GLEW_OK ) {
-
-            std::cout << "Unable To Init GLEW";
-
-            glfwTerminate();
-
-        }*/
-
-        GLenum status = glewInit();
-        FGE_CORE_ASSERT( status, "Failed To Load GLEW !!" );
+        m_Context = GraphicsContext::Create( m_Window );
+        m_Context->Init();       
 
         glfwSetWindowUserPointer( m_Window, &m_Data );
 		SetVSync( true );
@@ -188,7 +179,7 @@ namespace FGE {
     void Window::OnUpdate() {
 
         glfwPollEvents();
-        glfwSwapBuffers( m_Window );
+        m_Context->SwapBuffers();
 
     }
 

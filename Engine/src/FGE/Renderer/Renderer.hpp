@@ -1,3 +1,12 @@
 #pragma once 
 
-namespace FGE {}
+namespace FGE {
+
+    class Renderer {
+
+    public:
+        virtual void Init() = 0;
+
+    };
+
+}

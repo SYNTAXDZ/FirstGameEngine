@@ -37,6 +37,8 @@ namespace FGE {
         ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
 
+        unsigned int m_VAO, m_VBO, m_IBO;
+
         static Application* s_Instance;
 
     };
