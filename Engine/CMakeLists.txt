@@ -23,7 +23,7 @@ set_target_properties( "Engine" PROPERTIES VERSION ${PROJECT_VERSION} )
 set_target_properties( "Engine" PROPERTIES SOVERSION 1 )
 
 target_compile_features( ${PROJECT_NAME} PRIVATE cxx_std_17)
-add_compile_definitions( GLFW_INCLUDE_NONE )
+add_compile_definitions( GLFW_INCLUDE_NONE FGE_ENABLE_ASSERTS )
 
 # the pch will be included automaticlly in all cpp files in this target
 target_precompile_headers( ${PROJECT_NAME}

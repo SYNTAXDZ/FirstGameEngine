@@ -17,3 +17,7 @@
 #include "FGE/Events/KeyEvent.hpp"
 
 #include "FGE/ImGui/ImGuiLayer.hpp"
+
+#include "FGE/Renderer/Renderer.hpp"
+#include "FGE/Renderer/GraphicsContext.hpp"
+#include "FGE/Renderer/Buffer.hpp"
