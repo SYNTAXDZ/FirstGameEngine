@@ -8,6 +8,8 @@
 
 #include "FGE/ImGui/ImGuiLayer.hpp"
 
+#include "FGE/Renderer/Buffer.hpp"
+
 namespace FGE {
     class Application {
 
@@ -38,6 +40,9 @@ namespace FGE {
         bool m_Running = true;
 
         unsigned int m_VAO, m_VBO, m_IBO;
+
+        Ref<VertexBuffer> m_VertexBuffer;
+        Ref<IndexBuffer> m_IndexBuffer;
 
         static Application* s_Instance;
 

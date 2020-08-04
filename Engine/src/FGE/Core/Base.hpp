@@ -10,6 +10,7 @@
  We Will Define Some Macros in This File To Make our Life Easizer
 */
 
+
 // one shifted by x places in the left side
 #define BIT( x ) ( 1 << x )
 
