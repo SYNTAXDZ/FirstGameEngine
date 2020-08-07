@@ -17,7 +17,7 @@ target_include_directories( ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/s
 target_link_libraries( ${PROJECT_NAME} GLEW::GLEW glfw glm spdlog::spdlog assimp::assimp ImGui )
 
 
-set_target_properties(${PROJECT_NAME} PROPERTIES UNITY_BUILD ON)
+# set_target_properties(${PROJECT_NAME} PROPERTIES UNITY_BUILD ON)
 
 set_target_properties( "Engine" PROPERTIES VERSION ${PROJECT_VERSION} )
 set_target_properties( "Engine" PROPERTIES SOVERSION 1 )
