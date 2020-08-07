@@ -108,10 +108,10 @@ namespace FGE {
                
             }
 
-            m_VertexBuffers.push_back( vertexBuffer ); 
 
         }
 
+        m_VertexBuffers.push_back( vertexBuffer ); 
 
     }
     
