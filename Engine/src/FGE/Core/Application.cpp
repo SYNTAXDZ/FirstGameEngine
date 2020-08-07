@@ -14,6 +14,7 @@ namespace FGE {
     Application::Application() {
 
         FGE_CORE_ASSERT( !s_Instance, "Application already exists!" );
+        // set the instance to this instance
         s_Instance = this;
 
         // Create The Window
@@ -24,8 +25,7 @@ namespace FGE {
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay( m_ImGuiLayer );
 
-        glCreateVertexArrays( 1, &m_VAO );
-        glBindVertexArray( m_VAO );
+        m_VertexArray = VertexArray::Create();
 
         float vertices[] = {
 
@@ -38,11 +38,18 @@ namespace FGE {
 
         m_VertexBuffer = VertexBuffer::Create( vertices, sizeof( vertices ) );
 
-        glEnableVertexAttribArray( 0 );
-        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof( float ), nullptr );
+        BufferLayout layout = {
 
+            { ShaderDataType::Float3, "a_Position" }
+
+        };
+        m_VertexBuffer->SetLayout( layout );
+        
         // 12/ 4 = 3 (count of indicies)
         m_IndexBuffer = IndexBuffer::Create( indices, sizeof( indices )/ sizeof( uint32_t ) );
+
+        m_VertexArray->AddVertexBuffer( m_VertexBuffer );
+        m_VertexArray->SetIndexBuffer( m_IndexBuffer );
 
     }
     
@@ -87,8 +94,8 @@ namespace FGE {
             glClear( GL_COLOR_BUFFER_BIT );
             glClearColor( 0.6f, 0.5f, 0.5f, 1.0f );
 
-            glBindVertexArray( m_VAO );
-            glDrawElements( GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr );
+            m_VertexArray->Bind();
+            glDrawElements( GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr );
 
             // Because We Added Implimentation for begin() and end() we can use
             // the foreach array like this

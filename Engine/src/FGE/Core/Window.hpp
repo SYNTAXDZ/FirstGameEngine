@@ -4,8 +4,6 @@
 
 #include "Base.hpp"
 
-#include <GL/glew.h>
-
 #include "FGE/Events/Event.hpp"
 
 #include "FGE/Renderer/GraphicsContext.hpp"

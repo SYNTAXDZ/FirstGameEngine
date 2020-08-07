@@ -9,6 +9,7 @@
 #include "FGE/ImGui/ImGuiLayer.hpp"
 
 #include "FGE/Renderer/Buffer.hpp"
+#include "FGE/Renderer/VertexArray.hpp"
 
 namespace FGE {
     class Application {
@@ -43,6 +44,7 @@ namespace FGE {
 
         Ref<VertexBuffer> m_VertexBuffer;
         Ref<IndexBuffer> m_IndexBuffer;
+        Ref<VertexArray> m_VertexArray;
 
         static Application* s_Instance;
 
