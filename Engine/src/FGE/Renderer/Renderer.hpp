@@ -17,7 +17,7 @@ namespace FGE {
         inline static RendererAPI GetAPI() { return s_RendererAPI; }
     
     private:
-        static const RendererAPI s_RendererAPI = RendererAPI::OpenGL;
+        static RendererAPI s_RendererAPI;
 
     };
 
