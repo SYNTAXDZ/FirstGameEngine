@@ -11,12 +11,12 @@ namespace FGE {
 
         switch( Renderer::GetAPI() ) {
         
-            case RendererAPI::None:
+            case RendererAPI::API::None:
 
                 FGE_CORE_ASSERT( false, "Unknown API for The Renderer !" );
                 return nullptr;
             
-            case RendererAPI::OpenGL:
+            case RendererAPI::API::OpenGL:
 
                 return CreateRef<GLVertexArray>();
         

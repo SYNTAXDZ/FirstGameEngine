@@ -3,7 +3,7 @@
 #include "Log.hpp"
 #include "Input.hpp"
 
-#include <GL/glew.h>
+#include "FGE/Renderer/Renderer.hpp"
 
 #define BIND_EVENT_FN( x ) std::bind( &Application::x, this, std::placeholders::_1 )
 
@@ -91,11 +91,15 @@ namespace FGE {
 
         while( m_Running ) {
 
-            glClear( GL_COLOR_BUFFER_BIT );
-            glClearColor( 0.6f, 0.5f, 0.5f, 1.0f );
+            RenderCommand::Clear();
+            RenderCommand::SetClearColor( glm::vec4( 0.6f, 0.5f, 0.5f, 1.0f ) );
+
+            Renderer::BeginScene();
 
             m_VertexArray->Bind();
-            glDrawElements( GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr );
+            Renderer::Submit( m_VertexArray );
+
+            Renderer::EndScene();
 
             // Because We Added Implimentation for begin() and end() we can use
             // the foreach array like this
