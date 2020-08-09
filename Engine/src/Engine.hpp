@@ -19,6 +19,7 @@
 #include "FGE/ImGui/ImGuiLayer.hpp"
 
 #include "FGE/Renderer/Renderer.hpp"
+#include "FGE/Renderer/RenderCommand.hpp"
 #include "FGE/Renderer/GraphicsContext.hpp"
 #include "FGE/Renderer/Buffer.hpp"
 #include "FGE/Renderer/VertexArray.hpp"
