@@ -6,6 +6,10 @@
 #include "FGE/Events/Event.hpp"
 #include "FGE/Events/ApplicationEvent.hpp"
 
+#include "FGE/ImGui/ImGuiLayer.hpp"
+
+#include "FGE/Renderer/Buffer.hpp"
+#include "FGE/Renderer/VertexArray.hpp"
 
 namespace FGE {
     class Application {
@@ -25,13 +29,24 @@ namespace FGE {
 
         Window& GetWindow() { return *m_Window; }
 
+        inline static Application& Get() { return *s_Instance; }
+
     private:
         bool OnWindowClose( WindowCloseEvent& e );
 
     private:
         std::unique_ptr<Window> m_Window;
         LayerStack m_LayerStack;
+        ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
+
+        unsigned int m_VAO, m_VBO, m_IBO;
+
+        Ref<VertexBuffer> m_VertexBuffer;
+        Ref<IndexBuffer> m_IndexBuffer;
+        Ref<VertexArray> m_VertexArray;
+
+        static Application* s_Instance;
 
     };
 

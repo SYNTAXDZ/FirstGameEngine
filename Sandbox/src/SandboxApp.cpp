@@ -1,4 +1,5 @@
 #include <Engine.hpp>
+#include <imgui/imgui.h>
 
 class ExampleLayer : public FGE::Layer {
 
@@ -7,13 +8,24 @@ class ExampleLayer : public FGE::Layer {
 
         virtual void OnUpdate() override {
 
-            FGE_INFO( "ExampleLayer::OnUpdate" );
+            if( FGE::Input::IsKeyPressed( FGE_KEY_SPACE ) )
+                FGE_INFO( "Key Pressed" );
+
+            //FGE_INFO( "ExampleLayer::OnUpdate" );
+
+        }
+
+        virtual void OnImGuiRender() override {
+
+            ImGui::Begin( "Window" );
+            ImGui::Text( "This is a Text" );
+            ImGui::End();
 
         }
 
         virtual void OnEvent( FGE::Event& event ) override {
 
-            FGE_TRACE( "{0}", event );
+            //FGE_TRACE( "{0}", event );
 
         }
 

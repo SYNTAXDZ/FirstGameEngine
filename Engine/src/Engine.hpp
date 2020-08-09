@@ -7,7 +7,19 @@
 #include "FGE/Core/LayerStack.hpp"
 #include "FGE/Core/EntryPoint.hpp"
 
+#include "FGE/Core/KeyCodes.hpp"
+#include "FGE/Core/MouseCodes.hpp"
+#include "FGE/Core/Input.hpp"
+
 #include "FGE/Events/Event.hpp"
 #include "FGE/Events/ApplicationEvent.hpp"
 #include "FGE/Events/MouseEvent.hpp"
 #include "FGE/Events/KeyEvent.hpp"
+
+#include "FGE/ImGui/ImGuiLayer.hpp"
+
+#include "FGE/Renderer/Renderer.hpp"
+#include "FGE/Renderer/RenderCommand.hpp"
+#include "FGE/Renderer/GraphicsContext.hpp"
+#include "FGE/Renderer/Buffer.hpp"
+#include "FGE/Renderer/VertexArray.hpp"

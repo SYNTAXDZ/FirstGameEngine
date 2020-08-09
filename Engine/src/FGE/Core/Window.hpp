@@ -2,10 +2,13 @@
 
 #include "precompiled.h"
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include "Base.hpp"
 
 #include "FGE/Events/Event.hpp"
+
+#include "FGE/Renderer/GraphicsContext.hpp"
+
+struct GLFWwindow;
 
 namespace FGE {
 
@@ -19,13 +22,13 @@ namespace FGE {
                      uint32_t width = 1280, uint32_t height = 720 ) 
                      : Title( title ), Width( width ), Height( height ) {}
         
-    };
-    
+    };    
 
     class Window {
 
     public:
         using EventCallbackFn = std::function<void( Event& )>;
+        
         Window( const WindowProps& props );
         ~Window();
 
@@ -48,7 +51,8 @@ namespace FGE {
     
     private:
         GLFWwindow* m_Window;
-
+        Ref<GraphicsContext> m_Context;
+        
         struct WindowData {
 
             std::string Title;
