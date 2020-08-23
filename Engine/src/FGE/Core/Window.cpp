@@ -39,23 +39,23 @@ namespace FGE {
         m_Data.Height = props.Height;
 
         if( s_GLFWWindowCount == 0 ) {
-			
+
             int success = glfwInit();
-			
+
             FGE_CORE_ASSERT( success, "Could not initialize GLFW!" );
-			
+
             glfwSetErrorCallback( GLFWErrorCallback );
-		
-        }        
+
+        }
 
         m_Window = glfwCreateWindow( (int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr );
-		++s_GLFWWindowCount;
+        ++s_GLFWWindowCount;
 
         m_Context = GraphicsContext::Create( m_Window );
-        m_Context->Init();       
+        m_Context->Init();
 
         glfwSetWindowUserPointer( m_Window, &m_Data );
-		SetVSync( true );
+        SetVSync( true );
 
         glfwSetWindowSizeCallback( m_Window, []( GLFWwindow* window, int width, int height ) {
 
@@ -78,76 +78,78 @@ namespace FGE {
         } );
 
         glfwSetKeyCallback( m_Window, []( GLFWwindow* window, int key, int scancode, int action, int mods ) {
-			
+
             WindowData& data = *( WindowData* )glfwGetWindowUserPointer( window );
 
-			switch( action ) {
+            switch( action ) {
 				// if the key is pressed set The EventCallback to the KeyPressedEvent
                 case GLFW_PRESS:
-				{
-					KeyPressedEvent event( static_cast<KeyCode>( key ), 0 );
-					data.EventCallback( event );
-					
-                    break;
-				}
-				case GLFW_RELEASE:
-				{
-					KeyReleasedEvent event( static_cast<KeyCode>( key ) );
-					data.EventCallback( event );
-					
-                    break;
-				}
-				case GLFW_REPEAT:
-				{
-					KeyPressedEvent event( static_cast<KeyCode>( key ), 1 );
-					data.EventCallback( event );
-					
-                    break;
-				}
-			}
-		});
+                    {
+                        KeyPressedEvent event( static_cast<KeyCode>( key ), 0 );
+                        data.EventCallback( event );
+
+                        break;
+                    }
+                case GLFW_RELEASE:
+                    {
+                        KeyReleasedEvent event( static_cast<KeyCode>( key ) );
+                        data.EventCallback( event );
+
+                        break;
+                    }
+                case GLFW_REPEAT:
+                    {
+                        KeyPressedEvent event( static_cast<KeyCode>( key ), 1 );
+                        data.EventCallback( event );
+
+                        break;
+                    }
+
+            }
+
+        } );
 
         glfwSetMouseButtonCallback( m_Window, []( GLFWwindow* window, int button, int action, int mods ) {
-			
+
             WindowData& data = *( WindowData* )glfwGetWindowUserPointer( window );
 
-			switch( action ) {
-				
+            switch( action ) {
+
                 case GLFW_PRESS:
-				{
-					MouseButtonPressedEvent event( static_cast<MouseCode>( button ));
-					data.EventCallback( event );
-					
-                    break;
-				}
-				case GLFW_RELEASE:
-				{
-					MouseButtonReleasedEvent event( static_cast<MouseCode>( button ) );
-					data.EventCallback( event );
-					
-                    break;
-				}
-			}
-		
+                    {
+                        MouseButtonPressedEvent event( static_cast<MouseCode>( button ));
+                        data.EventCallback( event );
+
+                        break;
+                    }
+                case GLFW_RELEASE:
+                    {
+                        MouseButtonReleasedEvent event( static_cast<MouseCode>( button ) );
+                        data.EventCallback( event );
+
+                        break;
+                    }
+            }
+
         } );
 
         glfwSetScrollCallback( m_Window, []( GLFWwindow* window, double xOffset, double yOffset ) {
-			
+
             WindowData& data = *( WindowData* )glfwGetWindowUserPointer( window );
 
-			MouseScrolledEvent event( ( float )xOffset, ( float )yOffset );
-			data.EventCallback( event );
-		
+            MouseScrolledEvent event( ( float )xOffset, ( float )yOffset );
+            data.EventCallback( event );
+
         } );
 
-		glfwSetCursorPosCallback( m_Window, []( GLFWwindow* window, double xPos, double yPos ) {
-			
+        glfwSetCursorPosCallback( m_Window, []( GLFWwindow* window, double xPos, double yPos ) {
+
             WindowData& data = *( WindowData* )glfwGetWindowUserPointer( window );
 
-			MouseMovedEvent event( ( float )xPos, ( float )yPos );
-			
+            MouseMovedEvent event( ( float )xPos, ( float )yPos );
+
             data.EventCallback( event );
-		
+
         } );
 
     }
@@ -158,9 +160,9 @@ namespace FGE {
         --s_GLFWWindowCount;
 
         if( s_GLFWWindowCount == 0 ) {
-			
+
             glfwTerminate();
-		
+
         }
 
     }

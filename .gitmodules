@@ -2,3 +2,6 @@
 	path = Engine/vendor/imgui
 	url = https://github.com/ocornut/imgui
 	branch = docking
+[submodule "Engine/vendor/vcpkg"]
+	path = Engine/vendor/vcpkg
+	url = https://github.com/microsoft/vcpkg

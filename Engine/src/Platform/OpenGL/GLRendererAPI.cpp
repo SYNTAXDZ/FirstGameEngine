@@ -10,21 +10,21 @@ namespace FGE {
         switch( severity ) {
 
             case GL_DEBUG_SEVERITY_HIGH:
-                FGE_CORE_CRITICAL(message);
+                FGE_CORE_CRITICAL( message );
                 return;
             case GL_DEBUG_SEVERITY_MEDIUM:
-                FGE_CORE_ERROR(message);
+                FGE_CORE_ERROR( message );
                 return;
             case GL_DEBUG_SEVERITY_LOW:
-                FGE_CORE_WARN(message);
+                FGE_CORE_WARN( message );
                 return;
             case GL_DEBUG_SEVERITY_NOTIFICATION:
-                FGE_CORE_TRACE(message);
+                FGE_CORE_TRACE( message );
                 return;
 
         }
 
-        FGE_CORE_ASSERT(false, "Unknown severity level!");
+        FGE_CORE_ASSERT( false, "Unknown severity level!" );
 
     }
 

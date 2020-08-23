@@ -8,7 +8,7 @@
 namespace FGE {
 
    class VertexArray {
-   
+
    public:
        virtual ~VertexArray() {};
 

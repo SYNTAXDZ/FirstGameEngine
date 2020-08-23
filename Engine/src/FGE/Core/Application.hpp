@@ -2,16 +2,15 @@
 
 #include "Window.hpp"
 #include "LayerStack.hpp"
+#include "TimeStep.hpp"
 
 #include "FGE/Events/Event.hpp"
 #include "FGE/Events/ApplicationEvent.hpp"
 
 #include "FGE/ImGui/ImGuiLayer.hpp"
 
-#include "FGE/Renderer/Buffer.hpp"
-#include "FGE/Renderer/VertexArray.hpp"
-
 namespace FGE {
+
     class Application {
 
     public:
@@ -38,13 +37,8 @@ namespace FGE {
         std::unique_ptr<Window> m_Window;
         LayerStack m_LayerStack;
         ImGuiLayer* m_ImGuiLayer;
+        float m_LastFrameTime = 0.0f;
         bool m_Running = true;
-
-        unsigned int m_VAO, m_VBO, m_IBO;
-
-        Ref<VertexBuffer> m_VertexBuffer;
-        Ref<IndexBuffer> m_IndexBuffer;
-        Ref<VertexArray> m_VertexArray;
 
         static Application* s_Instance;
 

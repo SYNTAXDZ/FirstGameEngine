@@ -1,5 +1,6 @@
 #pragma once 
 
+#include "Shader.hpp"
 #include "RenderCommand.hpp"
 
 namespace FGE {
@@ -10,7 +11,8 @@ namespace FGE {
         static void BeginScene();
         static void EndScene();
 
-        static void Submit( const Ref<VertexArray>& vertexArray );
+        static void Submit( const Ref<VertexArray>& vertexArray, const Ref<Shader>& shader );
+        // static void Submit( const Ref<VertexArray> &vertexArray );
 
         inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 

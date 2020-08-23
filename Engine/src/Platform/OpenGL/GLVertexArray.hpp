@@ -1,3 +1,5 @@
+#pragma once
+
 #include "FGE/Renderer/VertexArray.hpp"
 
 namespace FGE {

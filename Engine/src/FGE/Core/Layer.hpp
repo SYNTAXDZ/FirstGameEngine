@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Base.hpp"
+#include "TimeStep.hpp"
 #include "FGE/Events/Event.hpp"
 
 namespace FGE {
@@ -13,7 +14,7 @@ namespace FGE {
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate( Timestep ts ) {}
         virtual void OnImGuiRender() {}
         virtual void OnEvent( Event& event ) {}
 

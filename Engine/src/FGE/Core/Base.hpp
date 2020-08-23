@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <string>
+#include <functional>
 
 /*
  We Will Define Some Macros in This File To Make our Life Easizer

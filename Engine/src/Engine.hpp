@@ -10,6 +10,8 @@
 #include "FGE/Core/KeyCodes.hpp"
 #include "FGE/Core/MouseCodes.hpp"
 #include "FGE/Core/Input.hpp"
+#include "FGE/Core/CameraController.hpp"
+#include "FGE/Core/TimeStep.hpp"
 
 #include "FGE/Events/Event.hpp"
 #include "FGE/Events/ApplicationEvent.hpp"
@@ -23,3 +25,4 @@
 #include "FGE/Renderer/GraphicsContext.hpp"
 #include "FGE/Renderer/Buffer.hpp"
 #include "FGE/Renderer/VertexArray.hpp"
+#include "FGE/Renderer/Shader.hpp"
