@@ -1,4 +1,8 @@
 cmake_minimum_required( VERSION 3.16 )
+
+set( CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vendor/vcpkg/scripts/buildsystems/vcpkg.cmake
+     CACHE STRING "Vcpkg toolchain file" )
+
 project( "Engine" VERSION 1.0.1 DESCRIPTION "My FirstGameEngine" )
 
 file( GLOB_RECURSE ENGINE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -16,7 +20,7 @@ find_package( spdlog CONFIG REQUIRED )
 target_include_directories( ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/ )
 target_link_libraries( ${PROJECT_NAME} GLEW::GLEW glfw glm spdlog::spdlog assimp::assimp ImGui )
 
-# set_target_properties(${PROJECT_NAME} PROPERTIES UNITY_BUILD ON)
+set_target_properties(${PROJECT_NAME} PROPERTIES UNITY_BUILD ON)
 
 set_target_properties( "Engine" PROPERTIES VERSION ${PROJECT_VERSION} )
 set_target_properties( "Engine" PROPERTIES SOVERSION 1 )
