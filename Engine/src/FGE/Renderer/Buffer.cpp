@@ -14,19 +14,19 @@ namespace FGE {
 
         // Check for The Renderering API
         switch( Renderer::GetAPI() ) {
-        
+
             case RendererAPI::API::None:
 
-                FGE_CORE_ASSERT( false, "No API was Selected !!" );            
+                FGE_CORE_ASSERT( false, "No API was Selected !!" );
                 return nullptr;
-            // if its OpenGL so Create The GL Version of VertexBuffer        
+            // if its OpenGL so Create The GL Version of VertexBuffer
             case RendererAPI::API::OpenGL:
-            
+
                 return CreateRef<GLVertexBuffer>( vertices, size );
-            
+
             default:
                 break;
-        
+
         }
 
         FGE_CORE_CRITICAL( "No Available API for Rendering !!" );

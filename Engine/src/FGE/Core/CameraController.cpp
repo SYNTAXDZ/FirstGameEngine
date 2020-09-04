@@ -20,13 +20,13 @@ namespace FGE {
         float translationSpeed =  m_CameraTranslationSpeed * ts.GetSeconds();
 
         if( Input::IsKeyPressed( KeyCode::A ) )
-            m_CameraPosition -= m_Camera.GetRightVector() * translationSpeed; 
+            m_CameraPosition -= m_Camera.Right * translationSpeed; 
         else if( Input::IsKeyPressed( KeyCode::D ) )
-            m_CameraPosition += m_Camera.GetRightVector() * translationSpeed;
+            m_CameraPosition += m_Camera.Right * translationSpeed;
         else if( Input::IsKeyPressed( KeyCode::W ) )
-            m_CameraPosition += m_Camera.GetFrontVector() * translationSpeed;
+            m_CameraPosition += m_Camera.Front * translationSpeed;
         else if( Input::IsKeyPressed( KeyCode::S ) )
-            m_CameraPosition -= m_Camera.GetFrontVector() * translationSpeed;
+            m_CameraPosition -= m_Camera.Front * translationSpeed;
 
         m_Camera.SetPosition( m_CameraPosition );
 
@@ -43,18 +43,18 @@ namespace FGE {
 
     void CameraController::ProcessMouseMovement( float offsetX, float offsetY, bool constrainPitch ) {
 
-        offsetX *= m_Camera.GetSensetivity();
-        offsetY *= m_Camera.GetSensetivity();
+        offsetX *= m_Camera.Sensetivity;
+        offsetY *= m_Camera.Sensetivity;
 
-        m_Camera.GetYaw() += offsetX;
-        m_Camera.GetPitch() += offsetY;
+        m_Camera.Yaw += offsetX;
+        m_Camera.Pitch += offsetY;
 
         if( constrainPitch ) {
 
-            if( m_Camera.GetPitch() > 90.0f )
-                m_Camera.GetPitch() = 90.0f;
-            if( m_Camera.GetPitch() < -90.0f )
-                m_Camera.GetPitch() = -90.0f;
+            if( m_Camera.Pitch > 90.0f )
+                m_Camera.Pitch = 90.0f;
+            if( m_Camera.Pitch < -90.0f )
+                m_Camera.Pitch = -90.0f;
 
         }
 

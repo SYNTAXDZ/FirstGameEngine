@@ -5,7 +5,7 @@
 #include "FGE/Core/Application.hpp"
 #include "FGE/Core/Layer.hpp"
 #include "FGE/Core/LayerStack.hpp"
-#include "FGE/Core/EntryPoint.hpp"
+// #include "FGE/Core/EntryPoint.hpp"
 
 #include "FGE/Core/KeyCodes.hpp"
 #include "FGE/Core/MouseCodes.hpp"
@@ -26,3 +26,4 @@
 #include "FGE/Renderer/Buffer.hpp"
 #include "FGE/Renderer/VertexArray.hpp"
 #include "FGE/Renderer/Shader.hpp"
+#include "FGE/Renderer/Texture.hpp"

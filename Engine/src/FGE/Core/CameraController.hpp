@@ -31,8 +31,9 @@ namespace FGE {
     private:
         float m_AspectRatio;
         float m_ZoomLevel = 45.0f;
-        float m_CameraTranslationSpeed = 5.0f;
+
         Camera m_Camera;
+        float m_CameraTranslationSpeed = 5.0f;
         glm::vec3 m_CameraPosition = glm::vec3( 0.0f, 0.0f, 3.0f );
 
     };

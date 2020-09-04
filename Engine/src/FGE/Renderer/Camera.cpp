@@ -10,7 +10,7 @@ namespace FGE {
 
         Yaw = -90.0f;
         Pitch = 0.0f;
-        Sensetivity = 0.2f;
+        Sensetivity = 0.1f;
         WorldUp = Up;
         UpdateCameraVectors();
 
@@ -32,7 +32,7 @@ namespace FGE {
 
         glm::vec3 front;
         front.x = glm::cos( glm::radians( Yaw ) ) * glm::cos( glm::radians( Pitch ) );
-        front.y = glm::cos(glm::radians(Pitch));
+        front.y = glm::sin( glm::radians( Pitch ) );
         front.z = glm::sin( glm::radians( Yaw ) ) * glm::cos( glm::radians( Pitch ) );
         Front = glm::normalize( front );
 
