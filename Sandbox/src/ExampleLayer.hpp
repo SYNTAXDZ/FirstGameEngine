@@ -19,6 +19,7 @@ private:
     FGE::Ref<FGE::VertexArray> m_VertexArray;
     FGE::CameraController m_CameraController;
     FGE::Ref<FGE::Shader> m_Shader;
+    FGE::Ref<FGE::Shader> m_ChrenoShader;
     FGE::Ref<FGE::Texture2D> m_Texture2D;
-
+    FGE::Ref<FGE::Texture2D> m_ChrenoTexture2D;
 };

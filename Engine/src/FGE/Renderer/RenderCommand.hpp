@@ -7,7 +7,11 @@ namespace FGE {
     class RenderCommand {
 
     public:
-        void Init();
+        inline static void Init() {
+
+            s_RendererAPI->Init();
+
+        }
 
         inline static void SetClearColor( const glm::vec4& color ) {
 

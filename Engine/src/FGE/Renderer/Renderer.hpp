@@ -9,12 +9,14 @@ namespace FGE {
     class Renderer {
 
     public:
-        static void BeginScene( Camera& camera );
-        static void EndScene();
+      static void Init();
+      static void Shutdown();
+      static void BeginScene( Camera &camera );
+      static void EndScene();
 
-        static void Submit( const Ref<VertexArray> &vertexArray, const Ref<Shader> &shader, const glm::mat4 &transform );
+      static void Submit( const Ref<VertexArray> &vertexArray, const Ref<Shader> &shader, const glm::mat4 &transform );
 
-        inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+      inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
     private:
         struct SceneData {

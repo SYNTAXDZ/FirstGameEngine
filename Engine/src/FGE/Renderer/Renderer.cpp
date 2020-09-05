@@ -4,6 +4,12 @@ namespace FGE {
 
     Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
 
+    void Renderer::Init() {
+
+        RenderCommand::Init();
+
+    }
+
     void Renderer::BeginScene( Camera &camera ) {
 
         s_SceneData->ProjectionMatrix = camera.GetProjectionMatrix();

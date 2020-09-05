@@ -25,9 +25,9 @@ namespace FGE {
         FGE_CORE_ASSERT( !status, "Failed To Load GLEW !!" );
 
         FGE_CORE_INFO( "OpenGL Info:" );
-		FGE_CORE_INFO( "  Vendor: {0}", glGetString( GL_VENDOR ) );
-		FGE_CORE_INFO( "  Renderer: {0}", glGetString( GL_RENDERER ) );
-		FGE_CORE_INFO( "  Version: {0}", glGetString( GL_VERSION ) );
+        FGE_CORE_INFO( "  Vendor: {0}", glGetString( GL_VENDOR ) );
+        FGE_CORE_INFO( "  Renderer: {0}", glGetString( GL_RENDERER ) );
+        FGE_CORE_INFO( "  Version: {0}", glGetString( GL_VERSION ) );
 
     }
 
