@@ -52,6 +52,12 @@ namespace FGE {
 
     }
 
+    void GLRendererAPI::SetViewport( uint32_t width, uint32_t height ) {
+
+        glViewport( 0, 0, width, height );
+
+    }
+
     void GLRendererAPI::SetClearColor( const glm::vec4& color ) {
 
         glClearColor( color.r, color.g, color.b, color.a );

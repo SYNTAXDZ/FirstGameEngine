@@ -10,6 +10,13 @@ namespace FGE {
 
     }
 
+    void Renderer::Shutdown() {}
+    void Renderer::OnWindowResize( uint32_t width, uint32_t height ) {
+
+        RenderCommand::SetViewport( width, height );
+
+    }
+
     void Renderer::BeginScene( Camera &camera ) {
 
         s_SceneData->ProjectionMatrix = camera.GetProjectionMatrix();

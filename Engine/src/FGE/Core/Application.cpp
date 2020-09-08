@@ -31,18 +31,23 @@ namespace FGE {
 
     }
 
-    Application::~Application() {}
+    Application::~Application() {
+
+        Renderer::Shutdown();
+
+    }
 
     void Application::OnEvent( Event& e ) {
 
         // Dispatch The Event Based On His Type
         EventDispatcher dispatcher( e );
         dispatcher.Dispatch<WindowCloseEvent>( BIND_EVENT_FN( OnWindowClose ) );
+        dispatcher.Dispatch<WindowResizeEvent>( BIND_EVENT_FN( OnWindowResize ) );
 
         // in This Loop We Go from The last Layer In LayerStack to The First One
         for( auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it ) {
             // If The Event Is Handled, So Break
-            if( e.Handled ) 
+            if( e.Handled )
                 break;
             // Handle The Events from Last Layer to The First One
             ( *it )->OnEvent( e );
@@ -74,16 +79,19 @@ namespace FGE {
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
-            // Because We Added Implimentation for begin() and end() we can use
-            // the foreach array like this
-            for( Layer* layer : m_LayerStack )
-                layer->OnUpdate( timestep );
+            if( !m_Minimized ) {
 
-            m_ImGuiLayer->Begin();
-            for( Layer* layer : m_LayerStack )
-                layer->OnImGuiRender();
-            m_ImGuiLayer->End();
+                // Because We Added Implimentation for begin() and end() we can
+                // use the foreach array like this
+                for( Layer *layer : m_LayerStack )
+                    layer->OnUpdate( timestep );
 
+                m_ImGuiLayer->Begin();
+                for( Layer *layer : m_LayerStack )
+                    layer->OnImGuiRender();
+                m_ImGuiLayer->End();
+
+            }
             m_Window->OnUpdate();
 
             if( Input::IsKeyPressed( FGE_KEY_ESCAPE ) )
@@ -101,4 +109,21 @@ namespace FGE {
 
     }
 
+    bool Application::OnWindowResize( WindowResizeEvent &e ) {
+
+        if( e.GetWidth() == 0 || e.GetHeight() == 0 ) {
+
+            m_Minimized = true;
+
+            return false;
+
+        }
+
+        m_Minimized = false;
+
+        Renderer::OnWindowResize( e.GetWidth(), e.GetHeight() );
+
+        return true;
+
+    }
 }
