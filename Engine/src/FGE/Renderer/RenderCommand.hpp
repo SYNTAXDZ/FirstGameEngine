@@ -15,7 +15,7 @@ namespace FGE {
 
         inline static void SetViewport( uint32_t width, uint32_t height ) {
 
-            // s_RendererAPI->SetViewport( width, height );
+            s_RendererAPI->SetViewport( width, height );
 
         }
 
