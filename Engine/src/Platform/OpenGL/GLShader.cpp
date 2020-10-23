@@ -1,5 +1,5 @@
 #include "GLShader.hpp"
-
+#include "GLDebug.hpp"
 #include "FGE/Core/Log.hpp"
 
 #include <glm/gtc/type_ptr.hpp>
@@ -50,6 +50,7 @@ namespace FGE {
     void GLShader::Bind() const {
 
         glUseProgram( m_RendererID );
+        glCheckError();
 
     }
     void GLShader::UnBind() const {
@@ -106,6 +107,7 @@ namespace FGE {
 
         GLint location = glGetUniformLocation( m_RendererID, name.c_str() );
         glUniform1i( location, value );
+        glCheckError();
 
     }
     void GLShader::UploadUniformIntArray( const std::string& name, int* values, uint32_t count ) {
@@ -119,6 +121,7 @@ namespace FGE {
 
       GLint location = glGetUniformLocation( m_RendererID, name.c_str() );
       glUniform1f( location, value );
+      glCheckError();
 
     }
     void GLShader::UploadUniformFloat2( const std::string& name, const glm::vec2& value ) {
@@ -131,12 +134,14 @@ namespace FGE {
 
         GLint location = glGetUniformLocation( m_RendererID, name.c_str() );
         glUniform3f( location, value.x, value.y, value.z );
+        glCheckError();
 
     }
     void GLShader::UploadUniformFloat4( const std::string& name, const glm::vec4& value ) {
 
       GLint location = glGetUniformLocation( m_RendererID, name.c_str() );
       glUniform4f( location, value.x, value.y, value.z, value.w );
+      glCheckError();
 
     }
 
@@ -150,6 +155,7 @@ namespace FGE {
 
       GLint location = glGetUniformLocation( m_RendererID, name.c_str() );
       glUniformMatrix4fv( location, 1, GL_FALSE, glm::value_ptr( matrix ) );
+      glCheckError();
 
     }
 
@@ -232,6 +238,7 @@ namespace FGE {
 
             const GLchar *sourceCStr = source.c_str();
             glShaderSource( shader, 1, &sourceCStr, 0 );
+            glCheckError();
 
             glCompileShader( shader );
 

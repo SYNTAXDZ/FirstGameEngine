@@ -9,16 +9,16 @@ namespace FGE {
 
     GLGraphicsContext::GLGraphicsContext( GLFWwindow* windowHandle ) 
         : m_WindowHandle( windowHandle ) {
-
-        glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
-        glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 5 );
-        glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
-
     }
 
     void GLGraphicsContext::Init() {
 
         glfwMakeContextCurrent( m_WindowHandle );
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
 
         glewExperimental = GL_TRUE;
         GLenum status = glewInit();

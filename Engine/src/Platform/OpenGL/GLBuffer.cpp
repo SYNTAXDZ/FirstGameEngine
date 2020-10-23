@@ -1,4 +1,3 @@
-
 #include "GLBuffer.hpp"
 
 #include <GL/glew.h>

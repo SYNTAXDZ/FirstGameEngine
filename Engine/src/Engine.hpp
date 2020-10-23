@@ -28,3 +28,5 @@
 #include "FGE/Renderer/Shader.hpp"
 #include "FGE/Renderer/Texture.hpp"
 #include "FGE/Renderer/Framebuffer.hpp"
+
+#include "FGE/Graphics/Primitives.hpp"

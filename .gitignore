@@ -10,4 +10,8 @@ CTestTestfile.cmake
 _deps
 .vscode
 build/
+build-emacs/
 .ccls-cache
+.ccls
+imgui.ini
+run.sh

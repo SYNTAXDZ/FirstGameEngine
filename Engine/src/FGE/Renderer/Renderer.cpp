@@ -11,6 +11,7 @@ namespace FGE {
     }
 
     void Renderer::Shutdown() {}
+
     void Renderer::OnWindowResize( uint32_t width, uint32_t height ) {
 
         RenderCommand::SetViewport( width, height );
@@ -28,12 +29,13 @@ namespace FGE {
     void Renderer::Submit( const Ref<VertexArray> &vertexArray, const Ref<Shader> &shader, const glm::mat4& transform ) {
 
       shader->Bind();
+
       shader->SetMat4( "u_Projection", s_SceneData->ProjectionMatrix );
       shader->SetMat4( "u_View", s_SceneData->ViewMatrix );
       shader->SetMat4( "u_Model", transform );
 
       vertexArray->Bind();
-      RenderCommand::DrawIndexed(vertexArray);
+      RenderCommand::DrawIndexed( vertexArray );
 
     }
 

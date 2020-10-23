@@ -1,4 +1,6 @@
 #include "GLTexture.hpp"
+#include "GLDebug.hpp"
+#include "FGE/Core/Log.hpp"
 
 #include <stb_image/stb_image.h>
 
@@ -20,6 +22,7 @@ namespace FGE {
 
     }
 
+    /*
     GLTexture2D::GLTexture2D( const std::string& path ) : m_Path( path ) {
 
         int width, height, channels;
@@ -42,6 +45,11 @@ namespace FGE {
             internalFormat = GL_RGB8;
             dataFormat = GL_RGB;
 
+        } else if( channels == 1 ) {
+
+            internalFormat = GL_RED;
+            dataFormat = GL_RED;
+
         }
 
         m_InternalFormat = internalFormat;
@@ -63,6 +71,49 @@ namespace FGE {
         stbi_image_free( data );
 
     }
+    */
+
+// utility function for loading a 2D texture from file
+// ---------------------------------------------------
+    GLTexture2D::GLTexture2D( const std::string& path)
+{
+    
+    glGenTextures(1, &m_RendererID);
+
+    int width, height, nrComponents;
+    unsigned char *data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
+
+    GLenum format;
+    if (data)
+    {
+        if (nrComponents == 1)
+            format = GL_RED;
+        else if (nrComponents == 3)
+            format = GL_RGB;
+        else if (nrComponents == 4)
+            format = GL_RGBA;
+
+        glBindTexture(GL_TEXTURE_2D, m_RendererID);
+        glCheckError();
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data); 
+        glCheckError();
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        FGE_CORE_ERROR( "Texture failed to load at path: " );
+        stbi_image_free(data);
+    }
+
+ 
+}
 
     GLTexture2D::~GLTexture2D() {
 
@@ -79,7 +130,9 @@ namespace FGE {
 
     void GLTexture2D::Bind( uint32_t slot ) const {
 
+        // glActiveTexture( slot );
         glBindTextureUnit( slot, m_RendererID );
+        glCheckError();
 
     }
 
