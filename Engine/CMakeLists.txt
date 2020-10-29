@@ -10,11 +10,11 @@ add_subdirectory( vendor/imgui )
 find_package( GLEW CONFIG REQUIRED )
 find_package( glfw3 CONFIG REQUIRED )
 find_package( glm CONFIG REQUIRED )
-find_package( assimp CONFIG REQUIRED )
+#find_package( assimp CONFIG REQUIRED )
 find_package( spdlog CONFIG REQUIRED )
 
 target_include_directories( ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/ )
-target_link_libraries( ${PROJECT_NAME} GLEW::GLEW glfw glm spdlog::spdlog assimp::assimp ImGui )
+target_link_libraries( ${PROJECT_NAME} GLEW::GLEW glfw glm spdlog::spdlog ImGui )
 
 # set_target_properties(${PROJECT_NAME} PROPERTIES UNITY_BUILD ON)
 
