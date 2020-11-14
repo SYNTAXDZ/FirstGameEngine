@@ -1,4 +1,4 @@
-#include "PBRTexturedLayer.hpp"
+#include "PBRLayer.hpp"
 #include <imgui/imgui.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -104,7 +104,7 @@ uint32_t indexCount = 0;
 PBRLayer::PBRLayer() : Layer( "PBRLayer" ), m_CameraController( 800.0f / 600.0f ) {
 
     m_PBRShader = FGE::Shader::Create(
-        "/home/syntax/Base/Knowledge/learn_cpp/CppProjects/FirstGameEngine/"
+        "/home/syntax/Base/Knowledge/learn_cpp/FirstGameEngine/"
         "Sandbox/assets/shaders/PBR.glsl");
 
     // lights
@@ -219,8 +219,8 @@ void PBRLayer::OnUpdate( FGE::Timestep ts ) {
        model = glm::translate( model, glm::vec3( 0.0f, 0.0f, -5.0f ) );
 
        m_PBRShader->SetFloat3("u_CamPos", m_CameraController.GetCamera().GetPosition());
-       //FGE::Renderer::Submit( m_VertexArray, m_PBRShader, model );
-       m_Sphere->Draw();
+       FGE::Renderer::Submit( m_VertexArray, m_PBRShader, model );
+       //m_Sphere->Draw();
        //FGE::Renderer::EndScene();
 
    //FGE::Renderer::BeginScene( m_CameraController.GetCamera() );
@@ -228,7 +228,7 @@ void PBRLayer::OnUpdate( FGE::Timestep ts ) {
    // render light source (simply re-render sphere at light positions)
    // this looks a bit off as we use the same shader, but it'll make their
    // positions obvious and keeps the codeprint small.
-   for (unsigned int i = 0; i < m_LightPositions.size() / sizeof( m_LightPositions[0] ); ++i) {
+   /*for (unsigned int i = 0; i < m_LightPositions.size() / sizeof( m_LightPositions[0] ); ++i) {
 
        m_PBRShader->Bind();
 
@@ -246,7 +246,7 @@ void PBRLayer::OnUpdate( FGE::Timestep ts ) {
        FGE::Renderer::Submit( m_VertexArray, m_PBRShader, model );
 
    }
-
+   */
    FGE::Renderer::EndScene();
 
 }

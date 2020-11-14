@@ -3,11 +3,11 @@
 
 #include <Engine.hpp>
 
-class PBRLayer : public FGE::Layer {
+class PBRTexturedLayer : public FGE::Layer {
 
 public:
-    PBRLayer();
-    virtual ~PBRLayer() = default;
+    PBRTexturedLayer();
+    virtual ~PBRTexturedLayer() = default;
 
     virtual void OnAttach() override;
     virtual void OnUpdate( FGE::Timestep ts ) override;
@@ -19,7 +19,7 @@ private:
     FGE::Ref<FGE::IndexBuffer> m_IndexBuffer;
     FGE::Ref<FGE::VertexArray> m_VertexArray;
     FGE::CameraController m_CameraController;
-    FGE::Ref<FGE::Shader> m_PBRShader;
+    FGE::Ref<FGE::Shader> m_PBRTexturedShader;
 
     std::vector<glm::vec3> m_LightPositions;
     std::vector<glm::vec3> m_LightColors;

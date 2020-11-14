@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-PBRLayer::PBRLayer() : Layer( "PBRLayer" ), m_CameraController( 800.0f / 600.0f ) {
+PBRTexturedLayer::PBRTexturedLayer() : Layer( "PBRTexturedLayer" ), m_CameraController( 800.0f / 600.0f ) {
 
   // lights
   // ------
@@ -24,7 +24,7 @@ PBRLayer::PBRLayer() : Layer( "PBRLayer" ), m_CameraController( 800.0f / 600.0f 
 
   m_VertexArray = FGE::VertexArray::Create();
 
-  m_PBRShader = FGE::Shader::Create(
+  m_PBRTexturedShader = FGE::Shader::Create(
       "/home/syntax/Base/Knowledge/learn_cpp/CppProjects/FirstGameEngine/"
       "Sandbox/assets/shaders/PBRTextured.glsl");
 
@@ -50,11 +50,11 @@ PBRLayer::PBRLayer() : Layer( "PBRLayer" ), m_CameraController( 800.0f / 600.0f 
 
     glm::mat4 model = glm::mat4( 1.0f );
     model = glm::translate( model, glm::vec3( 0.0f, 0.0f, -5.0f ) );
-    m_Sphere = FGE::Sphere::Create( m_PBRShader, model );
+    m_Sphere = FGE::Sphere::Create( m_PBRTexturedShader, model );
 
 }
 
-void PBRLayer::OnAttach() {
+void PBRTexturedLayer::OnAttach() {
 
     float cube_vertices[] = {
         // Front face
@@ -123,7 +123,7 @@ void PBRLayer::OnAttach() {
 
 }
 
-void PBRLayer::OnUpdate( FGE::Timestep ts ) {
+void PBRTexturedLayer::OnUpdate( FGE::Timestep ts ) {
 
     m_CameraController.OnUpdate( ts );
 
@@ -134,20 +134,20 @@ void PBRLayer::OnUpdate( FGE::Timestep ts ) {
        glm::mat4 model = glm::mat4( 1.0f );
        model = glm::translate( model, glm::vec3( 0.0f, 0.0f, -5.0f ) );
 
-       m_PBRShader->Bind();
-       m_PBRShader->SetInt("u_AlbedoMap", 0);
-       m_PBRShader->SetInt("u_NormalMap", 1);
-       m_PBRShader->SetInt("u_MetallicMap", 2);
-       m_PBRShader->SetInt("u_RoughnessMap", 3);
-       m_PBRShader->SetInt("u_AOMap", 4);
+       m_PBRTexturedShader->Bind();
+       m_PBRTexturedShader->SetInt("u_AlbedoMap", 0);
+       m_PBRTexturedShader->SetInt("u_NormalMap", 1);
+       m_PBRTexturedShader->SetInt("u_MetallicMap", 2);
+       m_PBRTexturedShader->SetInt("u_RoughnessMap", 3);
+       m_PBRTexturedShader->SetInt("u_AOMap", 4);
        m_AlbedoTexture->Bind(0);
        m_NormalTexture->Bind(1);
        m_MetallicTexture->Bind(2);
        m_RoughnessTexture->Bind(3);
        m_AOTexture->Bind(4);
 
-       m_PBRShader->SetFloat3("u_CamPos", m_CameraController.GetCamera().GetPosition());
-       //FGE::Renderer::Submit( m_VertexArray, m_PBRShader, model );
+       m_PBRTexturedShader->SetFloat3("u_CamPos", m_CameraController.GetCamera().GetPosition());
+       //FGE::Renderer::Submit( m_VertexArray, m_PBRTexturedShader, model );
        m_Sphere->Draw();
        FGE::Renderer::EndScene();
 
@@ -160,16 +160,16 @@ void PBRLayer::OnUpdate( FGE::Timestep ts ) {
 
        glm::vec3 newPos = m_LightPositions[i];
 
-       m_PBRShader->SetFloat3("lightPositions[" + std::to_string(i) + "]",
+       m_PBRTexturedShader->SetFloat3("lightPositions[" + std::to_string(i) + "]",
                             newPos);
 
-       m_PBRShader->SetFloat3("lightColors[" + std::to_string(i) + "]",
+       m_PBRTexturedShader->SetFloat3("lightColors[" + std::to_string(i) + "]",
                             m_LightColors[i]);
 
        model = glm::mat4( 1.0f );
        model = glm::translate( model, newPos );
        model = glm::scale( model, glm::vec3( 0.5f ) );
-       FGE::Renderer::Submit( m_VertexArray, m_PBRShader, model );
+       FGE::Renderer::Submit( m_VertexArray, m_PBRTexturedShader, model );
 
    }
 
@@ -177,7 +177,7 @@ void PBRLayer::OnUpdate( FGE::Timestep ts ) {
 
 }
 
-void PBRLayer::OnImGuiRender() {
+void PBRTexturedLayer::OnImGuiRender() {
 
     ImGui::Begin( "Window" );
     ImGui::Text( "This is a Text" );
@@ -185,7 +185,7 @@ void PBRLayer::OnImGuiRender() {
 
 }
 
-void PBRLayer::OnEvent( FGE::Event& event ) {
+void PBRTexturedLayer::OnEvent( FGE::Event& event ) {
 
     m_CameraController.OnEvent( event );
 
