@@ -59,13 +59,15 @@ void SimpleLayer::OnAttach() {
   m_VertexArray->SetIndexBuffer( m_IndexBuffer );
   m_LightVertexArray->SetIndexBuffer( m_LightIndexBuffer );
 
-  //m_Shader->Bind();
-  //m_Shader->SetInt( "u_Texture", 0 );
   m_Shader->Bind();
-  m_Shader->SetFloat3( "objectColor", glm::vec3( 1.0f, 0.5f, 0.3f ) );
-  m_Shader->SetFloat3( "lightColor", glm::vec3( 1.0f, 1.0f, 1.0f ) );
-  m_Shader->SetFloat3( "u_LightPos", m_LightPos );
-
+  m_Shader->SetFloat3( "material.ambient", glm::vec3( 1.0f, 0.5f, 0.3f ) );
+  m_Shader->SetFloat3( "material.diffuse", glm::vec3( 1.0f, 0.5f, 0.31f ) );
+  m_Shader->SetFloat3( "material.specular", glm::vec3( 0.5f ) );
+  m_Shader->SetFloat( "material.shininess", 32.0f );
+  m_Shader->SetFloat3( "light.ambient", glm::vec3( 0.2f ) );
+  m_Shader->SetFloat3( "light.diffuse", glm::vec3( 0.5f ) );
+  m_Shader->SetFloat3( "light.specular", glm::vec3( 1.0f ) );
+  m_Shader->SetFloat3( "light.position", m_LightPos );
 }
 
 void SimpleLayer::OnUpdate( FGE::Timestep ts ) {

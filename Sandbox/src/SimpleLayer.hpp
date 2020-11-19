@@ -26,6 +26,6 @@ private:
     FGE::Ref<FGE::IndexBuffer> m_LightIndexBuffer;
     FGE::Ref<FGE::Texture2D> m_Texture2D;
 
-    glm::vec3 m_LightPos = glm::vec3(1.2f, 2.2f, 4.0f);
+    glm::vec3 m_LightPos = glm::vec3(1.2f, 0.8f, 4.0f);
 
 };
