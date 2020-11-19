@@ -9,6 +9,7 @@
 
 SimpleLayer::SimpleLayer() : Layer( "SimpleLayer" ), m_CameraController( 800.0f / 600.0f ) {
 
+    // creation of vertexArrays
     m_VertexArray = FGE::VertexArray::Create();
     m_LightVertexArray = FGE::VertexArray::Create();
 
@@ -16,6 +17,7 @@ SimpleLayer::SimpleLayer() : Layer( "SimpleLayer" ), m_CameraController( 800.0f 
                                    "/home/syntax/Base/Knowledge/learn_cpp/FirstGameEngine/"
                                    "Sandbox/assets/shaders/Simple.glsl");
 
+    // creation of shaders
     m_LightShader = FGE::Shader::Create(
                                    "/home/syntax/Base/Knowledge/learn_cpp/FirstGameEngine/"
                                    "Sandbox/assets/shaders/Light.glsl");
@@ -62,6 +64,7 @@ void SimpleLayer::OnAttach() {
   m_Shader->Bind();
   m_Shader->SetFloat3( "objectColor", glm::vec3( 1.0f, 0.5f, 0.3f ) );
   m_Shader->SetFloat3( "lightColor", glm::vec3( 1.0f, 1.0f, 1.0f ) );
+  m_Shader->SetFloat3( "u_LightPos", m_LightPos );
 
 }
 
@@ -75,9 +78,10 @@ void SimpleLayer::OnUpdate( FGE::Timestep ts ) {
     FGE::Renderer::BeginScene( m_CameraController.GetCamera() );
        glm::mat4 model = glm::mat4( 1.0f );
        model = glm::translate( model, glm::vec3( 0.0f, 0.0f, -5.0f ) );
-       //m_Texture2D->Bind();
+       m_Shader->Bind();
+       m_Shader->SetFloat3( "u_ViewPos", m_CameraController.GetCamera().GetPosition() );
        FGE::Renderer::Submit( m_VertexArray, m_Shader, model );
-
+       // this object represent the light source
        model = glm::translate( model, m_LightPos );
        model = glm::scale( model, glm::vec3( 0.2f ) );
        FGE::Renderer::Submit( m_LightVertexArray, m_LightShader, model );
